@@ -31,15 +31,12 @@ def get_all_members():
     members = jackson_family.get_all_members()
     return jsonify(members), 200
 
-
-@app.route('/members/<int:Id_member>', methods=['GET'])
-def handle_get_member(id_member):
+@app.route('/member/<int:id_member>', methods=['GET'])
+def get_member(id_member):
     member = jackson_family.get_member(id_member)
-
     if member is None:
-        return jsonify({'err': 'member not found'}), 404
-    response = member
-    return jsonify(response), 200
+        return jsonify({'error': 'Member not found'}), 404
+    return jsonify(member), 200
 
 @app.route('/member', methods=['POST'])
 def add_member():
@@ -57,7 +54,7 @@ def delete_member(id_member):
         return jsonify({'error': 'Member not found'}), 404
     
     jackson_family.delete_member(id_member)
-    return jsonify({'message': 'Member deleted successfully'}), 200
+    return jsonify({'message': 'Member deleted successfully', 'done': True}), 200
 
 @app.route('/member/<int:id_member>', methods=['PUT'])
 def update_member(id_member):
@@ -71,6 +68,7 @@ def update_member(id_member):
     
     jackson_family.update_member(id_member, member_data)
     return jsonify({'message': 'Member updated successfully'}), 200
+
 
    
   # this only runs if `$ python src/app.py` is executed
