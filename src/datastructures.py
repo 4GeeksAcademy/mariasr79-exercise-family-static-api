@@ -30,8 +30,8 @@ class FamilyStructure:
         self._members.append(member)
          
 
-        def delete_member(self, id):
-            self._members = [member for member in self._members if member["id"] != id]
+    def delete_member(self, id):
+        self._members = [member for member in self._members if member["id"] != id]
 
 
     def get_member(self, id):
@@ -39,8 +39,7 @@ class FamilyStructure:
             if member ['id'] == id:
                 return member
         return None
-    def get_member(self, id):
-        pass
+   
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
